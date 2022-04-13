@@ -13,11 +13,13 @@ class MahasiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(Request $request)
+    {   
+ 
         return view('mahasiswa.index', [
             'mahasiswa' => DB::table('mahasiswa')->paginate(3)
         ]);
+        
         $mahasiswa = $mahasiswa = DB::table('mahasiswa')->get(); // Mengambil semua isi tabel
         $posts = Mahasiswa::orderBy('Nim', 'desc')->paginate(6);
         return view('mahasiswa.index', compact('mahasiswa'));
@@ -115,5 +117,12 @@ class MahasiswaController extends Controller
     {
         Mahasiswa::where('nim',$Nim)->first()->delete();
         return redirect()->route('mahasiswa.index')-> with('success', 'Mahasiswa Berhasil Dihapus');
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        $mahasiswa = Mahasiswa::where('nama', 'like', '%' . $search . '%')->simplePaginate(3);
+        return view('mahasiswa.index', compact('mahasiswa'));
     }
 }

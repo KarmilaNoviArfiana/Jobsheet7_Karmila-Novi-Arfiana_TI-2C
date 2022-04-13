@@ -8,6 +8,16 @@
         <div class="float-right my-2">
             <a class="btn btn-success" href="{{ route('mahasiswa.create') }}"> Input Mahasiswa</a>
         </div>
+        <div class="row">
+        <div class="col-md-6 mt-5">
+            <form action="/search">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search..." name="search" value="{{ request('search') }}">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                  </div>
+            </form>
+        </div>
+        </div>
     </div>
  </div>
 
