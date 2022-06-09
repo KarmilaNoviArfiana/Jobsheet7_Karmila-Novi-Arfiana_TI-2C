@@ -174,4 +174,11 @@ class MahasiswaController extends Controller
         $mahasiswa = Mahasiswa::where('nama', 'like', '%' . $search . '%')->simplePaginate(3);
         return view('mahasiswa.index', compact('mahasiswa'));
     }
+
+    public function nilai($id)
+    {
+        $Mahasiswa = Mahasiswa::with('kelas')->where('id_mahasiswa', $id)->first();
+        $matkul = Mahasiswa_MataKuliah::with('matakuliah')->where('mahasiswa_id', $id)->get();
+            return view('mahasiswa.nilai', compact('mahasiswa', 'matkul'));
+    }
 }
