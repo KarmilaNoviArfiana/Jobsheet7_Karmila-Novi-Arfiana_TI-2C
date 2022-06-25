@@ -3,34 +3,35 @@
 @section('content')
 
 <div class="container mt-5">
+
     <div class="row justify-content-center align-items-center">
         <div class="card" style="width: 24rem;">
-        <div class="card-header">
-        Edit Mahasiswa
-    </div>
-    <div class="card-body">
-    @if ($errors->any())
-        <div class="alert alert-danger">
-           <strong>Whoops!</strong> There were some problems with your input.<br><br>
-            <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
+            <div class="card-header">
+                Edit Mahasiswa
+            </div>
+            <div class="card-body">
+                @if ($errors->any())
+            <div class="alert alert-danger">
+                <strong>Whoops!</strong> There were some problems with your input.<br><br>
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
         @endif
-        <form method="post" action="{{ route('mahasiswa.update', $Mahasiswa->nim) }}" id="myForm">
+        <form method="post" action="{{ route('mahasiswa.update', $Mahasiswa->nim) }}" id="myForm" enctype="multipart/form-data">
         @csrf
         @method('PUT')
-        <div class="form-group">
-            <label for="Nim">Nim</label>
-            <input type="text" name="Nim" class="form-control" id="Nim" value="{{ $Mahasiswa->nim }}" aria-describedby="Nim" >
-        </div>
-        <div class="form-group">
-            <label for="Nama">Nama</label>
-            <input type="text" name="Nama" class="form-control" id="Nama" value="{{ $Mahasiswa->nama }}" aria-describedby="Nama" >
-        </div>
-        <div class="form-group">
+            <div class="form-group">
+                <label for="Nim">Nim</label>
+                <input type="text" name="Nim" class="form-control" id="Nim" value="{{ $Mahasiswa->nim }}" aria-describedby="Nim" >
+            </div>
+            <div class="form-group">
+                <label for="Nama">Nama</label>
+                <input type="text" name="Nama" class="form-control" id="Nama" value="{{ $Mahasiswa->nama }}" aria-describedby="Nama" >
+            </div>
+            <div class="form-group">
                 <label for="Kelas">Kelas</label>
                 <select name="Kelas" class="form-control">
                     @foreach($kelas as $kls)
@@ -38,26 +39,30 @@
                     @endforeach
                 </select>
             </div>
-        <div class="form-group">
-            <label for="Jurusan">Jurusan</label>
-            <input type="Jurusan" name="Jurusan" class="form-control" id="Jurusan" value="{{ $Mahasiswa->jurusan }}" aria-describedby="Jurusan" >
+            <div class="form-group">
+                <label for="Jurusan">Jurusan</label>
+                <input type="Jurusan" name="Jurusan" class="form-control" id="Jurusan" value="{{ $Mahasiswa->jurusan }}" aria-describedby="Jurusan" >
+            </div>
+            <div class="form-group">
+                <label for="Email">Email</label>
+                <input type="Email" name="Email" class="form-control" id="Email" value="{{ $Mahasiswa->email }}" aria-describedby="Email" >
+            </div>
+            <div class="form-group">
+                <label for="Alamat">Alamat</label>
+                <input type="Alamat" name="Alamat" class="form-control" id="Alamat" value="{{ $Mahasiswa->alamat }}" aria-describedby="Alamat" >
+            </div>
+            <div class="form-group">
+                <label for="Tgl_Lahir">Tanggal Lahir</label>
+                <input type="Tgl_Lahir" name="Tgl_Lahir" class="form-control" id="Tgl_Lahir" value="{{ $Mahasiswa->tgl_lahir }}" aria-describedby="Tgl_Lahir" >
+            </div>
+            <div class="form-group">
+                <label for="photo">Foto</label>
+                <input type="file" name="photo" class="form-control" id="photo" value="{{ $Mahasiswa->photo }}" aria-describedby="photo" >
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="Email">Email</label>
-            <input type="Email" name="Email" class="form-control" id="Email" value="{{ $Mahasiswa->email }}" aria-describedby="Email" >
-        </div>
-        <div class="form-group">
-            <label for="Alamat">Alamat</label>
-            <input type="Alamat" name="Alamat" class="form-control" id="Alamat" value="{{ $Mahasiswa->alamat }}" aria-describedby="Alamat" >
-        </div>
-        <div class="form-group">
-            <label for="TL">Tanggal Lahir</label>
-            <input type="TL" name="TL" class="form-control" id="TL" value="{{ $Mahasiswa->tl }}" aria-describedby="TL" >
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-     </form>
-    </div>
-    </div>
     </div>
 </div>
 @endsection

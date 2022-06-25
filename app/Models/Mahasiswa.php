@@ -8,33 +8,35 @@ use Illuminate\Foundation\Auth\Mahasiswa as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model; //Model Eloquent
 use App\Models\Mahasiswa;
+use App\Models\Mahasiswa_MataKuliah;
 
-class Mahasiswa extends Model
+class Mahasiswa extends Model //Definisi Model
 {
     protected $table='mahasiswa'; // Eloquent akan membuat model mahasiswa menyimpan record di tabel mahasiswa
-    protected $primaryKey = 'id_mahasiswa'; // Memanggil isi DB Dengan primarykey
-/**
-* The attributes that are mass assignable.
-*
-* @var array
-*/
+    protected $primaryKey = 'nim'; // Memanggil isi DB Dengan primarykey
+    /**
+    * The attributes that are mass assignable.
+    **
+    @var array
+    */
     protected $fillable = [
-    'Nim',
-    'Nama',
-    'Kelas',
-    'Jurusan',
-    'Email',
-    'Alamat',
-    'TL',
+        'Nim',
+        'Nama',
+        'Kelas',
+        'Jurusan',
+        'Email',
+        'Alamat',
+        'Tgl_Lahir',
+        'photo',
     ];
 
     public function kelas()
     {
-        return $this->belongsTo(Kelas::class);
+        return $this->belongsTo(Kelas::class);    
     }
 
     public function mahasiswa_matakuliah()
     {
         return $this->hasMany(Mahasiswa_MataKuliah::class);
     }
-}
+};
